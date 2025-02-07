@@ -1,5 +1,5 @@
 "use client"
-import { Chapters, CourseList } from '@/configs/Schema'
+import { Chapters, CourseList } from '@/configs/Schema1'
 import { useUser } from '@clerk/nextjs'
 import React, { useEffect ,useState} from 'react'
 import {and,eq} from 'drizzle-orm'

@@ -10,7 +10,7 @@ import {GenerateCourseLayout_AI} from '@/configs/AiModel'
 import LoadingDialog from './_components/LoadingDialog'
 import SelectCategory from './_components/SelectCategory'
 import {db} from '@/configs/db'
-import {CourseList} from "@/configs/Schema"
+import {CourseList} from "@/configs/Schema1"
 import uuid4 from "uuid4";
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'

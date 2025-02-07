@@ -1,6 +1,6 @@
 import React from 'react'
 import AddCourse from './AddCourse'
-import { CourseList } from '@/configs/Schema'
+import { CourseList } from '@/configs/Schema1'
 import UserCourseList from './UserCourseList'
 import Image from 'next/image'
 import { HiOutlineBookOpen } from 'react-icons/hi'

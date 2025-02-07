@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import EditCourseBasicInfo from './EditCourseBasicInfo'
 import {getDownloadURL, ref,uploadBytes} from 'firebase/storage'
 import {storage} from '@/configs/firebaseConfig'
-import { CourseList } from '@/configs/Schema';
+import { CourseList } from '@/configs/Schema1';
 import { db } from '@/configs/db'
 import { eq ,and} from 'drizzle-orm' 
 import Link from 'next/link';

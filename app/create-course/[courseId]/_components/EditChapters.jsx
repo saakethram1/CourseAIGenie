@@ -15,7 +15,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { db } from '@/configs/db'
 import { eq ,and} from 'drizzle-orm' 
-import { CourseList } from '@/configs/Schema'
+import { CourseList } from '@/configs/Schema1'
 const EditChapters = ({course,index,refresh}) => {
 
     const chapter=course?.courseOutput?.Chapters;

@@ -4,7 +4,7 @@ import CourseBasicInfo from '@/app/create-course/[courseId]/_components/CourseBa
 import CourseDetail from '@/app/create-course/[courseId]/_components/CourseDetail'
 import Header from '@/app/Dashboard/_components/Header'
 import { db } from '@/configs/db'
-import { CourseList } from '@/configs/Schema'
+import { CourseList } from '@/configs/Schema1'
 import { eq } from 'drizzle-orm'
 import React, { useEffect, useState } from 'react'
 
