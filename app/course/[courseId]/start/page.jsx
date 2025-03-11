@@ -10,6 +10,7 @@ const CourseStart = ({params}) => {
   const[course,setCourse]=useState();
   const[selectedChapter,setSelectedChapter]=useState();
   const[content,setContent]=useState();
+
     useEffect(()=>{
      GetCourse()
     },[])
@@ -22,17 +23,25 @@ const CourseStart = ({params}) => {
         const result=await db.select().from(CourseList)
         .where(eq(CourseList?.courseId,params?.courseId))
        setCourse(result[0]);
+       console.log("Course",result[0]);
        GetSelectedChapterContent(0);
     }
-    const GetSelectedChapterContent=async(chapterId)=>{
+    const GetSelectedChapterContent=async(chapterIndex)=>{
     
-        const result=await db.select().from(Chapters)
-        .where(and(eq(Chapters.chapterId,chapterId),
-        eq(Chapters.courseId,course?.courseId)))
+      if (!course?.courseId) return; // Ensure course exists before querying
 
-        setContent(result[0])
-       console.log("res",result);
-
+      // Fetch chapters from the database based on courseId
+      const result = await db.select().from(Chapters)
+          .where(and(eq(Chapters.courseId, course.courseId)))
+          .orderBy(Chapters.chapterId); // Ensure correct order
+  
+      if (result.length > chapterIndex) {
+          setContent(result[chapterIndex]); // Select the correct chapter by index
+          console.log("Content loaded", result[chapterIndex]);
+      } else {
+          setContent(null); // Reset if no matching chapter is found
+          console.log("No content found for this chapter");
+      }
     }
 
   return (
@@ -43,7 +52,7 @@ const CourseStart = ({params}) => {
 
      <div>
        {course?.courseOutput?.Chapters.map((chapter,index)=>(
-        <div key={index} onClick={()=>{setSelectedChapter(chapter);GetSelectedChapterContent(index)}}
+        <div key={index} onClick={()=>{setSelectedChapter(chapter); GetSelectedChapterContent(index)}}
          className={`cursor-pointer hover:bg-purple-50 ${selectedChapter?.ChapterName==chapter?.ChapterName && 'bg-purple-100'} `}>
         <ChapterListCard chapter={chapter} index={index}/>
         </div>

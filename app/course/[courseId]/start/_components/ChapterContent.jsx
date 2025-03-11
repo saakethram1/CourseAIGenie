@@ -8,8 +8,14 @@ const opts={
         autoplay:0
     }
 }
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import hljs from 'highlight.js';
+
 const ChapterContent = ({chapter,content}) => {
-    console.log("cont",content)
+   // console.log("cont",content)
+   
+
   return (
     <div className='p-10'>
       <h2 className='font-medium'>{chapter?.ChapterName}</h2>
@@ -27,10 +33,13 @@ const ChapterContent = ({chapter,content}) => {
           <ReactMarkdown className='whitespace-pre-wrap'>{item?.explanation}</ReactMarkdown>
           {item.code_example?.code && <div className='p-4 mt-2 bg-black rounded-lg text-white'>
             <h2 className='text-orange-500 mb-2'>{item?.code_example?.language}</h2>
-            <pre>
+            {/* <pre>
             <code>{item?.code_example?.code}</code>
-            </pre>
-          
+            </pre> */}
+            <SyntaxHighlighter language={hljs.highlightAuto(item?.code_example?.code).language || "plaintext"} style={dracula}>
+            {item?.code_example?.code.replace(/^<pre><code>/, '').replace(/<\/code><\/pre>$/, '')}
+        </SyntaxHighlighter>
+
           </div>
           }
         </div>
